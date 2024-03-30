@@ -22,9 +22,9 @@ const Login = () => {
     message.innerHTML = "Successfully login"
     message.style.color="green"
     if(userCredential.user.emailVerified){
-      window.location.assign("home.html")
-    }else{
       window.location.assign("emailVerification.html")
+    }else{
+      window.location.assign("home.html")
     }
   })
   .catch((error) => {
