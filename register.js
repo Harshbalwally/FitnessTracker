@@ -1,8 +1,9 @@
+
 var login = () => {
     window.location.assign("login.html");
 };
 
-const FirstName = document.getElementById("fristname");
+const FirstName = document.getElementById("firstname");
 const LastName = document.getElementById("lastname");
 const Email = document.getElementById("email");
 const MobileNumber = document.getElementById("mobilenumber");
@@ -11,7 +12,7 @@ const ReEnterPassword = document.getElementById("Repassword");
 const message = document.getElementById("message");
 var regex = /^[\w\-\.\+]+\@[a-zA-Z0-9\. \-]+\.[a-zA-z0-9]{2,4}$/;
 
-const SignUp = () => {
+const signup = () => {
     if (FirstName.value === "") {
       message.innerHTML = "First Name Required!";
       message.style.color = "red";
@@ -21,8 +22,8 @@ const SignUp = () => {
     } else if (MobileNumber.value === "") {
       message.innerHTML = "Mobile Number Required!";
       message.style.color = "red";
-    } else if (MobileNumber.value.length < 11) {
-      message.innerHTML = "Please Enter 11 digit Mobile No.";
+    } else if (MobileNumber.value.length < 10) {
+      message.innerHTML = "Please Enter 10 digit Mobile No.";
       message.style.color = "red";
     } else if (Email.value === "") {
       message.innerHTML = "Email Address Required!";
@@ -43,39 +44,45 @@ const SignUp = () => {
       message.innerHTML = "Password donot match";
       message.style.color = "red";
     }else{
-      firebase.auth().createUserWithEmailAndPassword( Email.value, Password.value)
-  .then((userCredential) => {
-    var d = new Date().toLocaleDateString();
-    // database
-    var userdata = {
-      FirstName: FirstName.value,
-      LastName: LastName.value,
-      MobileNumber: MobileNumber.value,
-      Email: Email.value,
-      Password: Password.value,
-      ReEnterPassword: ReEnterPassword.value,
-      uid: userCredential.user.uid,
-      ProfilePicture: "",
-      CoverPicture: "",
-      Description: "",
-      Signupdate: `${d}`,
-    };
-    firebase.firestore().collection("users").doc(userCredential.user.uid).set(userdata).then((res)=>{
-      message.innerHTML ="Account was created successfuly"
-      message.style.color ="green"
-      const user = firebase.auth().currentUser;
-      user.sendEmailVerification().then((res)=>{
-        setTimeout(()=>{
-          window.location.assign("emailVerification.html")
-        },2000)
-      })
-    })
-    message.innerHTML= "Sign Up Successfully"
-  })
-  .catch((error) => {
-    message.innerHTML = error.message;
-    // ..
-  });
         
-    }
+        firebase.auth().createUserWithEmailAndPassword( Email.value, Password.value)
+        .then((userCredential) => {
+            var d = new Date().toLocaleDateString();
+    const userData = {
+        FirstName: FirstName.value,
+        LastName: LastName.value,
+        MobileNumber: MobileNumber.value,
+        Email: Email.value,
+        Password: Password.value,
+        ReEnterPassword: ReEnterPassword.value,
+        uid: userCredential.user.uid,
+        ProfilePicture : "",
+        coverpicture : "",
+        Description : "",
+        signupdate : '${d}'
+       
+      };
+      console.log(userData)
+    
+      firebase.firestore().collection("users").doc(userCredential.user.uid).set(userData).then((res)=>{
+       
+            message.innerHTML ="Account was created successfuly"
+            message.style.color ="green"
+            const user = firebase.auth().currentUser;
+            window.location.assign("home.html")
+            
+          })
+          message.innerHTML= "Sign Up Successfully"
+         
+        })
+      
+  .catch((error) => {
+   message.innerHTML = error.message;
+   message.style.color ="green"
+  });
+     
+    // database
+   
+   
+}
 }

@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculate Your BMI</title>
     <style>
-        body
-             {
-            background-image: url('dummy.jpg');
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 50px;
+            text-align: center;
+            font-size: 24px;
+            margin-top: 0px;
+        }
+        body {
+           
             background-size: cover;
             background-position: center;
             /* Add other background styles as needed */
-        }
-         {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -23,16 +28,11 @@
         .container {
             max-width: 400px;
             margin: 50px auto;
-            background-color: rgba(255,255,255);
+            background-color: rgba(255,255,255, 0.8); /* Update background color to be transparent */
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
         }
-
-        h1 {
-            text-align: center;
-           
-      }
 
         label {
             display: block;
@@ -79,12 +79,13 @@
             text-align: center;
             margin-top: 20px;
         }
+
+      
     </style>
 </head>
 <body>
-    <h1 style="font-size: 70px;">Fitness Tracker</h1> <!-- Display Fitness Tracker as heading -->
+    <h1 class="header">Fitness Tracker</h1>
     <div class="container">
-        <h2 >Calculate Your BMI</h2> <!-- Update heading to H2 for sub-heading -->
         <form id="bmiForm">
             <label for="age">Age:</label>
             <input type="number" id="age" placeholder="Enter your age">
@@ -95,8 +96,8 @@
                 <option value="female">Female</option>
             </select>
 
-            <label for="height">Height (in meters):</label>
-            <input type="number" id="height" step="0.01" placeholder="Enter your height" required>
+            <label for="height">Height (in feet):</label>
+            <input type="number" id="height" step="0.01" placeholder="Enter your height in feet" required>
 
             <label for="weight">Weight (in kilograms):</label>
             <input type="number" id="weight" step="0.1" placeholder="Enter your weight" required>
@@ -113,13 +114,22 @@
 
     <script>
         function calculateBMI() {
-            var age = parseInt(document.getElementById('age').value) || 0;
-            var gender = document.getElementById('gender').value;
-            var height = parseFloat(document.getElementById('height').value);
+            var age = parseInt(document.getElementById('age').value);
+            var height = parseFloat(document.getElementById('height').value) * 0.3048; // Convert feet to meters
             var weight = parseFloat(document.getElementById('weight').value);
 
-            if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
-                document.getElementById('result').innerHTML = 'Please enter valid height and weight.';
+            if (isNaN(age) || age <= 0) {
+                alert('Please enter a valid age.');
+                return;
+            }
+
+            if (isNaN(height) || height <= 0) {
+                alert('Please enter a valid height.');
+                return;
+            }
+
+            if (isNaN(weight) || weight <= 0) {
+                alert('Please enter a valid weight.');
                 return;
             }
 

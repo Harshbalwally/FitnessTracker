@@ -8,7 +8,7 @@ firebase.auth().onAuthStateChanged((user) => {
       } else {
         // email verification
         setTimeout(() => {
-          window.location.assign("email.html");
+          window.location.assign("emailVerification.html");
         }, 1000);
       }
     } else {

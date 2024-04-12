@@ -4,10 +4,26 @@
     <title>What Is Your Fitness Goal?</title>
     <style>
         body {
-            background-image: url('dummy.jpg');
+          
+             background-color: #3498db;
             background-size: cover;
             background-position: center;
            
+        }
+        .header {
+            background-color: #3498db; /* Changed header background color to blue */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .footer {
+            background-color: #3498db; /* Changed footer background color to blue */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
         }
         .container {
             background-color: #fff;
@@ -44,6 +60,10 @@
             border-radius: 5px;
             cursor: pointer;
             margin: 10px;
+            text-decoration: none; /* Remove underline */
+        }
+        .option-box:hover {
+            background-color: #2980b9; /* Change background color on hover */
         }
         .switch-option {
             position: absolute;
@@ -58,6 +78,7 @@
     </style>
 </head>
 <body>
+    
     <div class="container">
         <h1>What Is Your Fitness Goal?</h1>
         
@@ -65,24 +86,24 @@
             <a href="3rdpage.html" class="option-box">Gaining Weight</a>
             <a href="4thpage.html" class="option-box">Losing Weight</a>
         </div>
-        <!-- Added "See Exercises" option near "Switch to G-ID" -->
+       
         <div class="bottom-option">
            
         </div>
     </div>
    <div class="container">
- 
+    <h1>see exercises</h1>
         <div class="bottom-option">
-            <a href="exercise.html" class="option-box">See Exercises</a>
+            <a href="exercise.html" class="option-box">Exercises</a>
           
            
         </div>
      
     </div>
  <div class="containers">
- 
+    <h1>switch to G-id</h1>
         <div class="bottom-option">
-            <a href="register.html" class="option-box">Switch to G-ID</a>
+            <a href="register.html" class="option-box">G-ID</a>
            <a href="gid.html"><img src="question.jpg" alt="G-ID" style=" width: 80px;height: auto;position: absolute; bottom: 0; right: 0; margin-bottom: 10px;margin-right: 10px;"></a>
         </div>
 </body>

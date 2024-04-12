@@ -14,7 +14,7 @@ firebase.auth().onAuthStateChanged((user) => {
       uid = user.uid;
       console.log("Email is verified!");
     } else {
-      window.location.assign("email.html");
+      window.location.assign("emailVerification.html");
     }
   } else {
     window.location.assign("login.html");

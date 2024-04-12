@@ -1,29 +1,15 @@
-// import firebase from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
-// import "https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";
-// import "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
-
 let uid;
 let alluser = [];
 let userimg = document.getElementById("userimg");
-firebase.initializeApp({
-    apiKey: "AIzaSyCzSFhHe_N49YLv34DkA3-13JeNKMRz5OY",
-    authDomain: "socialmedia-d3d79.firebaseapp.com",
-    projectId: "socialmedia-d3d79",
-    storageBucket: "socialmedia-d3d79.appspot.com",
-    messagingSenderId: "99467734990",
-    appId: "1:99467734990:web:e28819b35b303e5d4ec59f",
-    measurementId: "G-Z6NJ3CS2MY"
-  });
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    console.log("harsh")
     if (user.emailVerified) {
       uid = user.uid;
       console.log("emailVerified true");
       var createpostinput = document.getElementById("a");
       firebase
         .firestore()
-        .collection("users/")
+        .collection("users")
         .onSnapshot((result) => {
           result.forEach((users) => {
             alluser.push(users.data());
@@ -42,15 +28,12 @@ firebase.auth().onAuthStateChanged((user) => {
           });
         });
     } else {
-      window.location.assign("email.html");
+      window.location.assign("emailVerification.html");
     }
   } else {
     window.location.assign("login.html");
   }
 });
-
-
-
 
 // get all post
 var loading = document.getElementById("loaderdiv");
@@ -106,7 +89,7 @@ firebase
             userprofileimage.setAttribute("class", "profileimage");
             let userdiv = document.createElement("div");
             userprodiv.appendChild(userdiv);
-            let username = document.createElement("h6");
+            let = username = document.createElement("h6");
             userdiv.appendChild(username);
             username.innerHTML = `${res.data().FirstName} ${res.data().LastName
               }`;
@@ -183,7 +166,7 @@ firebase
               }
               firebase
                 .firestore()
-                .collection("posts/")
+                .collection("posts")
                 .doc(allposts[i].id)
                 .update({
                   like: likearry,
@@ -229,7 +212,7 @@ firebase
               }
               firebase
                 .firestore()
-                .collection("posts/")
+                .collection("posts")
                 .doc(allposts[i].id)
                 .update({
                   dislikes: dislikearry,
@@ -328,9 +311,9 @@ firebase
     }
   });
 
-
-  const logout = ()=>{
-    firebase.auth().signOut().then(() => {
-      window.location.assign("login.js")
-    })
-  }
+// Function for logout
+function logout() {
+  firebase.auth().signOut().then(() => {
+    window.location.assign("login.html");
+  });
+}

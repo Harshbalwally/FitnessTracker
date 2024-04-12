@@ -94,7 +94,7 @@ firebase.auth().onAuthStateChanged((user) => {
             })
        })
       } else {
-          window.location.assign("email.html");
+          window.location.assign("emailVerification.html");
       }
     } else {
         window.location.assign("login.html");

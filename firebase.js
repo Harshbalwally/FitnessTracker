@@ -1,12 +1,12 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyCzSFhHe_N49YLv34DkA3-13JeNKMRz5OY",
-    authDomain: "socialmedia-d3d79.firebaseapp.com",
-    projectId: "socialmedia-d3d79",
-    storageBucket: "socialmedia-d3d79.appspot.com",
-    messagingSenderId: "99467734990",
-    appId: "1:99467734990:web:e28819b35b303e5d4ec59f",
-    measurementId: "G-Z6NJ3CS2MY"
-  };
+  apiKey: "AIzaSyCd37CCR8rwEDZQkTS0fbnV-HF3SV9eWf8",
+  authDomain: "socialmedia-c80c4.firebaseapp.com",
+  projectId: "socialmedia-c80c4",
+  storageBucket: "socialmedia-c80c4.appspot.com",
+  messagingSenderId: "922366252485",
+  appId: "1:922366252485:web:5bb1969cf3fd03591527ac",
+  measurementId: "G-3WHMER7FLT"
+};
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
