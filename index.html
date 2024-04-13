@@ -6,13 +6,14 @@
     <title>Calculate Your BMI</title>
     <style>
         .header {
-            background-color: #007bff;
-            color: white;
-            padding: 50px;
-            text-align: center;
-            font-size: 24px;
-            margin-top: 0px;
-        }
+
+background-color: #007bff;
+color: white;
+padding: 50px;
+text-align: center;
+font-size: 24px;
+margin-top: 0px;
+}
         body {
            
             background-size: cover;
@@ -28,10 +29,10 @@
         .container {
             max-width: 400px;
             margin: 50px auto;
-            background-color: rgba(255,255,255, 0.8); /* Update background color to be transparent */
+            background-color: rgba(255,255,255); /* Update background color to be transparent */
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0,0.8);
         }
 
         label {
@@ -60,7 +61,7 @@
         button {
             width: 100%;
             padding: 10px;
-            background-color: #007bff;
+            background-color: #0056b3;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -96,8 +97,11 @@
                 <option value="female">Female</option>
             </select>
 
-            <label for="height">Height (in feet):</label>
-            <input type="number" id="height" step="0.01" placeholder="Enter your height in feet" required>
+            <label for="feet">Height (feet):</label>
+            <input type="number" id="feet" placeholder="Feet" required>
+
+            <label for="inches">(inches):</label>
+            <input type="number" id="inches" placeholder="Inches" required>
 
             <label for="weight">Weight (in kilograms):</label>
             <input type="number" id="weight" step="0.1" placeholder="Enter your weight" required>
@@ -115,50 +119,18 @@
     <script>
         function calculateBMI() {
             var age = parseInt(document.getElementById('age').value);
-            var height = parseFloat(document.getElementById('height').value) * 0.3048; // Convert feet to meters
+            var feet = parseInt(document.getElementById('feet').value);
+            var inches = parseInt(document.getElementById('inches').value);
             var weight = parseFloat(document.getElementById('weight').value);
 
-            if (isNaN(age) || age <= 0) {
-                alert('Please enter a valid age.');
-                return;
-            }
+            // Convert feet and inches to meters
+            var heightInMeters = (feet * 0.3048) + (inches * 0.0254);
 
-            if (isNaN(height) || height <= 0) {
-                alert('Please enter a valid height.');
-                return;
-            }
-
-            if (isNaN(weight) || weight <= 0) {
-                alert('Please enter a valid weight.');
-                return;
-            }
-
-            // BMI calculation
-            var bmi = weight / (height * height);
+            // Calculate BMI
+            var bmi = weight / (heightInMeters * heightInMeters);
 
             // Display BMI
-            var resultMsg = 'Your BMI is: ' + bmi.toFixed(2);
-
-            // BMI Categories and Suggestions
-            if (bmi < 18.5) {
-                resultMsg += ' (Underweight)';
-                // Example: Suggest to gain weight for underweight individuals
-                resultMsg += ' - Consider gaining weight.';
-            } else if (bmi >= 18.5 && bmi < 25) {
-                resultMsg += ' (Normal weight)';
-                // Example: Suggest to maintain weight for normal weight individuals
-                resultMsg += ' - Maintain your weight.';
-            } else if (bmi >= 25 && bmi < 30) {
-                resultMsg += ' (Overweight)';
-                // Example: Suggest to lose weight for overweight individuals
-                resultMsg += ' - Consider losing weight.';
-            } else {
-                resultMsg += ' (Obese)';
-                // Example: Suggest to lose weight for obese individuals
-                resultMsg += ' - Consider losing weight.';
-            }
-
-            document.getElementById('result').innerHTML = resultMsg;
+            document.getElementById('result').innerText = 'Your BMI is: ' + bmi.toFixed(2);
         }
 
         function chooseFitnessGoal() {
