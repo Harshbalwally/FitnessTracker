@@ -117,22 +117,47 @@ margin-top: 0px;
     </div>
 
     <script>
-        function calculateBMI() {
-            var age = parseInt(document.getElementById('age').value);
-            var feet = parseInt(document.getElementById('feet').value);
-            var inches = parseInt(document.getElementById('inches').value);
-            var weight = parseFloat(document.getElementById('weight').value);
+      function calculateBMI() {
+    var age = parseInt(document.getElementById('age').value);
+    var feet = parseInt(document.getElementById('feet').value);
+    var inches = parseInt(document.getElementById('inches').value);
+    var weight = parseFloat(document.getElementById('weight').value);
 
-            // Convert feet and inches to meters
-            var heightInMeters = (feet * 0.3048) + (inches * 0.0254);
+    // Validation checks for input fields
+    if (isNaN(age) || isNaN(feet) || isNaN(inches) || isNaN(weight)) {
+        document.getElementById('result').innerHTML = 'Please enter valid numeric values for all fields.';
+        return; // Exit the function if any input is invalid
+    }
 
-            // Calculate BMI
-            var bmi = weight / (heightInMeters * heightInMeters);
+    // Additional validation checks for specific input ranges
+    if (age <= 0 || feet <= 0 || inches < 0 || weight <= 0) {
+        document.getElementById('result').innerHTML = 'Please enter valid positive values for all fields.';
+        return; // Exit the function if any input is invalid
+    }
 
-            // Display BMI
-            document.getElementById('result').innerText = 'Your BMI is: ' + bmi.toFixed(2);
-        }
+    // Convert feet and inches to meters
+    var heightInMeters = (feet * 0.3048) + (inches * 0.0254);
 
+    // Calculate BMI
+    var bmi = weight / (heightInMeters * heightInMeters);
+
+    // Display BMI
+    var bmiMessage = 'Your BMI is: ' + bmi.toFixed(2) + '<br>';
+
+    // Determine BMI category and recommendation
+    if (bmi < 18.5) {
+        bmiMessage += 'You are underweight. Consider gaining some weight.';
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+        bmiMessage += 'Your weight is normal. Keep up the good work!';
+    } else if (bmi >= 25 && bmi < 29.9) {
+        bmiMessage += 'You are overweight. Consider losing some weight.';
+    } else {
+        bmiMessage += 'You are obese. Consider losing weight for better health.';
+    }
+
+    // Display the result message
+    document.getElementById('result').innerHTML = bmiMessage;
+}
         function chooseFitnessGoal() {
             // Redirect to a page where the user can choose their fitness goal based on their BMI
             window.location.href = '2ndpage.html';
